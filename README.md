@@ -8,42 +8,29 @@
 
 ## Introduction
 
-The ATU Examination Paper Management System is a Java-based application designed for managing examination processes at ATU's Department of Computer Science & Applied Physics. This document outlines the key software design features and DOP principles implemented in the system.
+The ATU Examination Paper Management System is a robust API designed with a focus on Data-Oriented Programming (DOP) and SOLID principles. This is a project for the Advanced Software Design Module. The aim is to provide a reliable, easy-to-use, and maintainable interface for interacting with examination data. 
 
 ## Software Design Features and DOP Principles
 
-### Modular Architecture
-- **Description**: The system is structured into distinct packages and classes, each responsible for specific functionalities.
-- **DOP Alignment**: While not a DOP principle per se, modular architecture complements DOP by facilitating clearer data flow and management.
+## Design Patterns Utilization
 
-### Data Serialization for Persistence
-- **Description**: Serialization is used for storing and retrieving objects like `ExaminationPaper`, `ModuleInfo`, and `Examiner`.
-- **DOP Alignment**: This approach aligns with DOP's emphasis on treating data as a central asset, focusing on its natural form and persistence.
+- **Singleton Pattern**: An example is the `ExaminerUtil` class, implemented to ensure there is only one instance managing the examiner data throughout the application. This pattern is crucial for centralizing and managing shared resources consistently.
 
-### Interface-based Design
-- **Description**: Services are defined through interfaces, decoupling functionality from implementation.
-- **DOP Alignment**: Interfaces can facilitate DOP by clearly defining how data is accessed and manipulated, though true DOP would further separate data and logic.
+- **Factory Method Pattern**: The methods `createExaminer`, `createInternalExaminer`, and `createExternalExaminer` in `ExaminerUtil` class follow the Factory Method pattern. They encapsulate the object creation process and delegate it to subclasses (Internal and External Examiners).
 
-### Use of Java Records for Data Structuring
-- **Description**: Java records are used for concise and immutable data carriers.
-- **DOP Alignment**: Immutable data structures are a core DOP principle, enhancing data integrity and predictability.
+- **Command Pattern**: The `recordAction` method in `ExternalExaminerServiceImpl` is an example of the Command pattern, where an action (like `Add_Comment`, `Approve`, `Reject`) is encapsulated as an object.
 
-### Scanner for Command-line User Interaction
-- **Description**: A console-based interface is employed for its simplicity.
-- **DOP Alignment**: While not directly related to DOP, this choice supports a straightforward data input and output mechanism.
+- **Strategy Pattern**: The implementation of interfaces `ModuleService`, `ExaminationPaperService`, `ExternalExaminerService` and `QuestionService` represents the Strategy pattern. Different strategies for handling modules, examination papers, and external examiner functionalities are encapsulated behind these interfaces.
 
-### Immutable Data Structures
-- **Description**: The system makes use of immutable data structures, as seen in the usage of Java records.
-- **DOP Alignment**: Adheres to the DOP principle of immutability, ensuring data state is not changed unexpectedly.
+## SOLID Principles
+- **Single Responsibility Principle (SRP)**: Classes like `ModuleServiceImpl`, `ExaminationPaperServiceImpl`, `ExaminerUtil`, each have a single responsibility.
 
-### Separation of Data from Logic
-- **Description**: The system partially separates data from logic, with potential for further decoupling.
-- **DOP Alignment**: This separation aligns with DOP's focus on treating data and logic as distinct entities.
+- **Open/Closed Principle (OCP)**: The system is extendable without the need for modification. For example, adding new types of examiners or new modules can be done without altering existing code, especially due to the use of interfaces.
 
-### Data Schema
-- **Description**: Clear data schemas are defined for various entities like examination papers and modules.
-- **DOP Alignment**: DOP emphasizes the importance of well-defined data schemas, which is evident in the system's design.
+- **Liskov Substitution Principle (LSP)**: The use of interfaces and inheritance (like `Examiner interface` implemented by `InternalExaminer` and `ExternalExaminer`) shows adherence to LSP.
 
-## Conclusion
+- **Interface Segregation Principle (ISP)**: The application follows ISP by creating specific interfaces (`ModuleService`, `ExaminationPaperService`, `ExternalExaminerService` and `QuestionService`) for specific functionalities.
 
-The ATU Examination Paper Management System incorporates several DOP principles within its object-oriented architecture, focusing on data integrity, clear schema definition, and immutability. While it shows alignment with DOP in certain aspects, there is room for further integration of DOP principles, particularly in achieving a greater separation of data and logic.
+- **Dependency Inversion Principle (DIP)**: The use of high-level modules like `Runner` depending on abstractions (`ModuleService`, `ExaminationPaperService`, `ExternalExaminerService` and `QuestionService`) instead of concrete classes.
+
+
