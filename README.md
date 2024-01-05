@@ -8,9 +8,49 @@
 
 ## Introduction
 
-The ATU Examination Paper Management System is a robust API designed with a focus on Data-Oriented Programming (DOP) and SOLID principles. This is a project for the Advanced Software Design Module. The aim is to provide a reliable, easy-to-use, and maintainable interface for interacting with examination data. 
+The ATU Examination Paper Management System is an API designed following the principles of Data-Oriented Programming (DOP) and SOLID. This is a project for the Advanced Software Design Module. The aim is to provide a reliable, easy-to-use, and maintainable interface for interacting with examination data. 
 
-## Software Design Features and DOP Principles
+## Key Functionalities
+### Main Menu
+<div align="center">
+    <img src="./images/mainMenu.png" width="50%" alt="ATU Logo">
+</div>
+
+### Examiner Management
+- **Creation and listing of examiners**: Handle operations for internal and external examiners. Includes creation of new examiners and listing all examiners.
+<div align="center">
+    <img src="./images/createInternalExaminer.png" width="30.1%" alt="Internal Examiner Creation">
+    <img src="./images/createExternalExaminer.png" width="35%" alt="External Examiner Creation">
+    <img src="./images/allExaminers.png" width="31%" alt="List of all Examiners">
+    
+</div>
+
+### Academic Modules Management
+- **Creation and Listing of modules**: Manage academic modules with functionalities for creating new modules and listing all available ones.
+<div align="center">
+    <img src="./images/createModule.png" width="30%" alt="Create Modules">
+    <img src="./images/listAllModules.png" width="32.5%" alt="List of all Modules">   
+</div>
+
+
+### Examination Paper Management
+- **Paper Handling**: Creation of new examination papers and all questions following the module rules. It also lists all papers.
+
+<div align="center">
+    <img src="./images/createPaper.png" width="50%" alt="Create Paper">
+    <img src="./images/listAllPapers.png"  height="80%" alt="List of all Papers">   
+</div>
+
+### External Examiner Actions
+- **Action Recording**: Records `comments`, `approvals`, and `rejections` by external examiners on examination papers. It also lists all actions for the Module and the user could choose to list all actions for an existing paper.
+<div align="center">
+    <img src="./images/recordAction.png" width="50%" alt="Record Action">
+    <div>
+        <img src="./images/listAllExaminerActions.png" width="40%" alt="List of all actions">
+        <img src="./images/listActionPerPaper.png" width="32%" alt="List of all actions">
+    </div>  
+</div>
+
 
 ## Design Patterns Utilization
 
@@ -32,5 +72,8 @@ The ATU Examination Paper Management System is a robust API designed with a focu
 - **Interface Segregation Principle (ISP)**: The application follows ISP by creating specific interfaces (`ModuleService`, `ExaminationPaperService`, `ExternalExaminerService` and `QuestionService`) for specific functionalities.
 
 - **Dependency Inversion Principle (DIP)**: The use of high-level modules like `Runner` depending on abstractions (`ModuleService`, `ExaminationPaperService`, `ExternalExaminerService` and `QuestionService`) instead of concrete classes.
+
+***
+End
 
 
